@@ -1,0 +1,186 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="homepage">
+    <meta name="author" content="akhil">
+    <link rel="shortcut icon" href="./images/icon.png">
+
+    <title>Large-Scale Image Memorability</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/dropzone.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:600,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+
+    <!-- some good ol' javascript resources -->
+    <script src="./js/dropzone.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
+
+  <body>
+
+    <div id="top-menu" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container" style="width: 80%;">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="font-size: 25px; font-family: 'Roboto Slab'; color: #FFFFFF;" href="#">LaMem</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Demo</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+
+    <div class="container" id="main-content">
+
+      <div id="page-heading" class="row">
+        <div id="heading-text">
+          <span style="font-family: 'Roboto Slab'; font-weight: 700; color: #FFFFFF">La</span>rge-scale Image <span style="font-family: 'Roboto Slab'; font-weight: 700; color: #FFFFFF">Mem</span>orability
+        </div>
+      </div>
+      
+      <div class="row" id="demo" style>
+
+        <div class="col-md-4">
+          <div id="file-upload">
+            <strong>How memorable is your image? Upload to find out!</strong>
+            <form action="/upload-target" class="dropzone" style="margin-top: 10px;"></form>
+            <b>or</b> enter an image url:
+            <div class="form-group" style="margin-top: 10px;">
+              <input type="text" class="form-control" id="webImageUrl" placeholder="Enter URL">
+            </div>
+            <b>or</b> choose one of these examples:
+            <table align="center" style="margin-top: 5px;">
+              <tr>
+                <td><div class="img-container"><img src="imgs/1.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/2.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/3.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/5.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+              </tr>
+              <tr>
+                <td><div class="img-container"><img src="imgs/6.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/7.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/8.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/9.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-md-4" style="text-align: center; font-size: 2em;">
+          <div class="underline-text">Original Image</div>
+          <div style="margin-top: 7px;">
+            <img src="imgs/1.jpg" style="max-width: 100%;"></img><br/>
+            Memorability: Low <br/>
+            <span style="font-size: 1em;">(score: 0.555)</span>
+          </div>
+        </div>
+
+        <div class="col-md-4" style="text-align: center; font-size: 2em;">
+          <div class="underline-text" style="margin-bottom: 10px;">Memorability Heat Map</div>
+          <div style="margin-top: 7px;">
+            <img src="imgs/1.jpg" style="max-width: 100%;"></img>
+          </div>
+        </div>
+
+      </div> <!-- end demo row -->
+
+      <hr/>
+
+      <div class="row" id="how-it-works">
+
+        <div class="col-md-1"></div>
+        <div class="col-md-4" style="display: table;">
+            <div class="row-title" style="color: #333399;">
+              <span class="title-emph">H</span>ow it <br/>
+              <span class="title-emph">W</span>orks
+            </div>
+        </div>
+
+        <div class="col-md-6">
+          <div style="display: table;">
+            <div style="display: table-cell; vertical-align: middle;">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div> <!--make sure they add up to 12 col's-->
+      </div> <!-- end how it works -->
+
+      <hr/>
+
+      <div class="row" id="explore-dataset">
+
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+          <div style="display: table;">
+            <div style="display: table-cell; vertical-align: middle;">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" style="display: table; text-align: right;">
+            <div class="row-title" style="color: #006600;">
+              <span class="title-emph">E</span>xplore the <br/>
+              <span class="title-emph">D</span>ataset
+            </div>
+        </div>        
+        <div class="col-md-1"></div> <!--make sure they add up to 12 col's-->
+      </div> <!-- end explore -->
+
+      <hr/>
+
+      <div class="row" id="our-paper">
+
+        <div class="col-md-1"></div>
+        <div class="col-md-4" style="display: table;">
+            <div class="row-title" style="color: #660066;">
+              <span class="title-emph">D</span>ownload our <br/>
+              <span class="title-emph">P</span>aper
+            </div>
+        </div>
+
+        <div class="col-md-6" style="display: table;">
+            <div style="display: table-cell; vertical-align: middle;">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div> <!--make sure they add up to 12 col's-->
+      </div> <!-- end our paper row -->
+
+
+    </div>
+      
+
+      
+    </div> <!-- ends container for sections -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+  
+
+</body></html>
