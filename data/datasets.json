@@ -1,0 +1,107 @@
+[
+    {
+        "displayname": "All",
+        "filtername": "",
+        "sortStats": [
+            {
+                "stat": "memscore",
+                "reverse": true,
+                "name": "Memorability (hi to lo)"
+            },
+            {
+                "stat": "memscore",
+                "reverse": false,
+                "name": "Memorability (lo to hi)"
+            }
+        ]
+    },
+    {
+        "displayname": "Emotions",
+        "filtername": "emotions",
+        "sortStats": [
+            {
+                "stat": "memscore",
+                "reverse": true,
+                "name": "Memorability (hi to lo)"
+            },
+            {
+                "stat": "memscore",
+                "reverse": false,
+                "name": "Memorability (lo to hi)"
+            },
+            {
+                "stat": "emotion",
+                "reverse": false,
+                "name": "Emotions (???)"
+            }
+        ]
+    },
+    {
+        "displayname": "Aesthetics",
+        "filtername": "aesthetics",
+        "sortStats": [
+            {
+                "stat": "memscore",
+                "reverse": true,
+                "name": "Memorability (hi to lo)"
+            },
+            {
+                "stat": "memscore",
+                "reverse": false,
+                "name": "Memorability (lo to hi)"
+            },
+            {
+                "stat": "aesthetics",
+                "reverse": true,
+                "name": "Aesthetics (hi to lo)"
+            },
+            {
+                "stat": "aesthetics",
+                "reverse": false,
+                "name": "Aesthetics (lo to hi)"
+            }
+        ]
+    },
+    {
+        "displayname": "Popularity",
+        "filtername": "popularity",
+        "sortStats": [
+            {
+                "stat": "memscore",
+                "reverse": true,
+                "name": "Memorability (hi to lo)"
+            },
+            {
+                "stat": "memscore",
+                "reverse": false,
+                "name": "Memorability (lo to hi)"
+            },
+            {
+                "stat": "popscore",
+                "reverse": true,
+                "name": "Popularity (hi to lo)"
+            },
+            {
+                "stat": "popscore",
+                "reverse": false,
+                "name": "Popularity (lo to hi)"
+            }
+        ]
+    },
+    {
+        "displayname": "COCO",
+        "filtername": "coco",
+        "sortStats": [
+            {
+                "stat": "memscore",
+                "reverse": true,
+                "name": "Memorability (hi to lo)"
+            },
+            {
+                "stat": "memscore",
+                "reverse": false,
+                "name": "Memorability (lo to hi)"
+            }
+        ]
+    }
+]
