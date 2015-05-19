@@ -1,0 +1,120 @@
+<html lang="en" ng-app="imagesApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="homepage">
+    <meta name="author" content="akhil">
+    <link rel="shortcut icon" href="./images/icon.png">
+
+    <title>LaMem Dataset</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/dataset.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/dropzone.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:600,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+
+    <!-- some good ol' javascript resources -->
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./js/dropzone.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/controllers.js"></script>
+    <script src="js/jquery.unveil.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        //make it so that the images load when visible
+        $("img").unveil();
+      });
+
+    </script>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
+</head>
+  <body ng-controller="ImageListCtrl">
+
+    <div id="top-menu" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container" style="width: 80%;">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="font-size: 25px; font-family: 'Roboto Slab'; color: #FFFFFF;" href="#">LaMem</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Demo</a></li>
+            <li class="active"><a href="#">Explore</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+
+    <div class="container" id="main-content">
+
+      <div id="page-heading" class="row">
+        <div id="heading-text">
+          <span style="font-family: 'Roboto Slab'; font-weight: 700; color: #FFFFFF">LaMem</span> Dataset
+        </div>
+      </div>
+      
+      
+      <div class="row">
+        <div class="col-md-3" id="side-nav" style="padding-right: 0px;">
+          <div class="well well-nav affix-top" data-spy="affix"  data-offset-top="200" style="top: 50px;">
+            <ul class="nav nav-list" >
+              <li class="disabled">Select a dataset:</li>
+              <li class="active"><a href="" ng-click="selectedDataset = $">All</a></li>
+              <li><a id="emotions-link" href="" ng-click="selectedDataset = 'emotions'">Emotions</a></li>
+              <li><a id="aesthetics-link" href="" ng-click="selectedDataset = 'aesthetics'">Aesthetics</a></li>
+              <li><a id="popularity-link" href="" ng-click="selectedDataset = 'popularity'">Popularity</a></li>
+              <li><a id="coco-link" href="" ng-click="selectedDataset = 'coco'">COCO</a></li>
+            </ul>
+            <hr/>
+            <ul class="nav nav-list">
+              <li class="disabled">Sort by:</li>
+              <li class="active"><a href="#">Memorability</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-9" id="images-area">
+
+          <ul style="text-align: center;">
+            <li ng-repeat="img in images | filter:selectedDataset" style="margin: 5px; display: inline-block; float: none;">
+              <a href="#" class="thumbnail">
+                <img src="imgs/placeholder.png" data-src="imgs/{{img.name}}">
+              </a>
+            </li>
+          </ul>
+
+      </div> <!-- end row -->
+
+    </div>
+      
+
+      
+    </div> <!-- ends container for sections -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="./js/bootstrap.min.js"></script>
+</body></html>

@@ -1,0 +1,71 @@
+* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.section-heading > a{
+  color: #333333;
+}
+
+.navbar-collapse {
+  width: 80%;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFFFFF;
+}
+
+#top-menu {
+  background-color: #A64D4D;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+#main-content {
+  width: 100%;
+  /*height: 100%;*/
+  padding-left: 0;
+  padding-right: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+#page-heading {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  height: 2.5em;
+  background-color: #A64D4D;
+  font-family: 'Raleway', sans-serif;
+  font-size: 5em;
+  color: #CECECE;
+  font-weight: 300;
+  text-align: center;
+  display: table;
+}
+
+#heading-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#side-nav > .affix {
+  width: inherit;
+}
+
+.thumbnail {
+    display: block;
+    overflow: hidden;
+    height: 200px;
+    width: 200px;
+}
+
+.thumbnail img {
+    display: block; /* Otherwise it keeps some space around baseline */
+    min-width: 100%;    /* Scale up to fill container width */
+    min-height: 100%;   /* Scale up to fill container height */
+    -ms-interpolation-mode: bicubic; /* Scaled images look a bit better in IE now */
+}
