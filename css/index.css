@@ -66,10 +66,10 @@ body {
 
 .lamem-text {
   color: #A31F34;
-  font-size: 1.25em;
-   -webkit-text-fill-color: #FFFFFF; /* Will override color (regardless of order) */
-   -webkit-text-stroke-width: 3px;
-   -webkit-text-stroke-color: #A31F34;
+  /*font-size: 1.25em;*/
+   -webkit-text-fill-color: #A31F34; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 2px;
+   -webkit-text-stroke-color: #FFFFFF;
 }
 
 .row {
