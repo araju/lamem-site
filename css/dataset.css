@@ -1,5 +1,5 @@
-* Move down content because we have a fixed navbar that is 50px tall */
-body {
+/* Move down content because we have a fixed navbar that is 50px tall */
+/*body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
@@ -26,7 +26,7 @@ body {
 #main-content {
   width: 100%;
   /*height: 100%;*/
-  padding-left: 0;
+  /*padding-left: 0;
   padding-right: 0;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
@@ -50,22 +50,107 @@ body {
 #heading-text {
   display: table-cell;
   vertical-align: middle;
+}*/
+
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+.section-heading > a{
+  color: #333333;
 }
 
-#side-nav > .affix {
-  width: inherit;
+.navbar-collapse {
+  width: 80%;
 }
 
-.thumbnail {
-    display: block;
-    overflow: hidden;
-    height: 200px;
-    width: 200px;
+.navbar-inverse .navbar-nav > li > a {
+  color: #000000;
 }
 
-.thumbnail img {
-    display: block; /* Otherwise it keeps some space around baseline */
-    min-width: 100%;    /* Scale up to fill container width */
-    min-height: 100%;   /* Scale up to fill container height */
-    -ms-interpolation-mode: bicubic; /* Scaled images look a bit better in IE now */
+#top-menu {
+  background-color: #DADADA;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+}
+
+#topnav-links > li > a:hover {
+  color: #A31F34;
+}
+
+#main-content {
+  padding-left: 0;
+  padding-right: 0;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+}
+
+#page-heading {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  display: table;
+}
+
+.jumbotron {
+  width: 100%;
+  background: url('../imgs/grey_wash_wall.png') repeat center center;
+  font-family: 'Raleway', sans-serif;
+  color: #FFFFFF
+  font-weight: 300;
+  text-align: center;
+}
+
+#heading-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#heading-text > p {
+  color: #FFFFFF;
+}
+
+#heading-text > p > a {
+  color: inherit;
+}
+
+.lamem-text {
+  color: #A31F34;
+  font-size: 1.25em;
+   -webkit-text-fill-color: #FFFFFF; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 3px;
+   -webkit-text-stroke-color: #A31F34;
+}
+
+#side-nav > .btn-group-vertical > button {
+  border: medium none;
+  border-left: solid 1px;
+  text-align: left;
+  margin-left: 1.5em;
+}
+
+.active-link > a {
+  color: #A31F34;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.inactive-link > a{
+  color: #000000;
+}
+
+div.center-cropped {
+  width: 200px;
+  height: 200px;
+  overflow:hidden;
+}
+div.center-cropped img {
+  min-height: 100%;
+  min-width: 100%;
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
 }

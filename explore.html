@@ -15,24 +15,16 @@
 
     <!-- Custom styles for this template -->
     <link href="./css/dataset.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/dropzone.css">
+    <!--<link href="./css/common.css" rel="stylesheet">-->
     <link href='http://fonts.googleapis.com/css?family=Raleway:600,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- some good ol' javascript resources -->
     <script src="./assets/js/jquery.js"></script>
-    <script src="./js/dropzone.js"></script>
     <script src="./js/angular.min.js"></script>
     <script src="./js/controllers.js"></script>
-    <script src="js/jquery.unveil.js"></script>
-
-    <script>
-      $(document).ready(function() {
-        //make it so that the images load when visible
-        $("img").unveil();
-      });
-
-    </script>
+    <script type='text/javascript' src='./js/ng-infinite-scroll.js'></script>
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -52,56 +44,62 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="font-size: 25px; font-family: 'Roboto Slab'; color: #FFFFFF;" href="#">LaMem</a>
+          <a class="navbar-brand" style="font-size: 1.75em; font-family: 'Roboto Slab'; color: #A31F34;" href="#">LaMem</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html">Demo</a></li>
-            <li class="active"><a href="#">Explore</a></li>
-            <li><a href="#">Contact</a></li>
+          <ul id="topnav-links" class="nav navbar-nav">
+            <li><a href="index.html"><i class="fa fa-magic fa-fw" style="margin: 3px;"></i>Demo</a></li>
+            <li class="active"><a href="#"><i class="fa fa-th fa-fw" style="margin: 3px;"></i>Explore</a></li>
+            <li><a href="#"><i class="fa fa-envelope-o fa-fw" style="margin: 3px;"></i>Contact</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
 
-
-    <div class="container" id="main-content">
-
-      <div id="page-heading" class="row">
-        <div id="heading-text">
-          <span style="font-family: 'Roboto Slab'; font-weight: 700; color: #FFFFFF">LaMem</span> Dataset
-        </div>
+    <div id="page-heading" class="jumbotron">
+      <div id="heading-text" class="container">
+        <p style="font-family: 'Roboto Slab'; font-weight: 700; font-size: 5em;">
+          <span class="lamem-text">LaMem</span> Dataset
+        </p>
       </div>
-      
+    </div>
+
+    <div class="container" id="main-content">      
       
       <div class="row">
-        <div class="col-md-3" id="side-nav" style="padding-right: 0px;">
-          <div class="well well-nav affix-top" data-spy="affix"  data-offset-top="200" style="top: 50px;">
+        <div class="col-md-3" id="side-nav" style="padding-right: 0px; height: 100%">
+          <div class="well well-nav affix-top" data-spy="affix"  data-offset-top="200" style="top: 70px;">
             <ul class="nav nav-list" >
               <li class="disabled">Select a dataset:</li>
-              <li ng-repeat="dataset in datasets">
+              <li ng-repeat="dataset in datasets" ng-class="$parent.selectedDataset === dataset ? 'active-link' : 'inactive-link'">
                 <a href ng-click="$parent.selectedDataset = dataset">{{dataset.displayname}}</a>
               </li>
             </ul>
             <hr/>
             <ul class="nav nav-list">
               <li class="disabled">Sort by:</li>
-              <li ng-repeat="stat in selectedDataset.sortStats">
+              <li ng-repeat="stat in selectedDataset.sortStats" ng-class="($parent.sortStat === stat.stat) && ($parent.reverse === stat.reverse)? 'active-link' : 'inactive-link'">
                 <a href="" ng-click="$parent.sortStat = stat.stat; $parent.reverse = stat.reverse">{{stat.name}}</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="col-md-9" id="images-area">
+        <div class="col-md-9">
 
-          <ul style="text-align: center;">
+          <!--<ul style="text-align: center;">
             <li ng-repeat="img in images | filter:selectedDataset.filtername | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none;">
               <a href="#" class="thumbnail">
-                <img src="imgs/placeholder.png" data-src="{{name}}" ng-init="name = 'imgs/' + img.name" ng-mouseenter="name = 'imgs/' + img.heatmap" ng-mouseleave="name = 'imgs/' + img.name">
+                <img class="lazy" data-original="{{name}}" ng-init="name = 'imgs/' + img.name" ng-mouseenter="name = 'imgs/' + img.heatmap" ng-mouseleave="name = 'imgs/' + img.name">
               </a>
             </li>
-          </ul>
+          </ul>-->
+          <div id="images-field" infinite-scroll='loadMore()' infinite-scroll-distance='0' style="text-align: center;">
+            <div class="center-cropped" ng-repeat="img in images | filter:selectedDataset.filtername | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none; ">
+              <img class="img-responsive" ng-src="{{name}}" ng-init="name = 'imgs/' + img.name" ng-mouseenter="name = 'imgs/' + img.heatmap" ng-mouseleave="name = 'imgs/' + img.name" >
+            </div>
+          </div>
+          
 
       </div> <!-- end row -->
 
@@ -116,4 +114,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     
     <script src="./js/bootstrap.min.js"></script>
+    
+
 </body></html>

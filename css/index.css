@@ -12,44 +12,64 @@ body {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #FFFFFF;
+  color: #000000;
 }
 
 #top-menu {
-  background-color: #A64D4D;
+  background-color: #DADADA;
   border: none;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 1em;
+}
+
+#topnav-links > li > a:hover {
+  color: #A31F34;
 }
 
 #main-content {
-  width: 100%;
-  /*height: 100%;*/
   padding-left: 0;
   padding-right: 0;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 #page-heading {
   width: 100%;
   margin-right: 0;
   margin-left: 0;
-  height: 2.5em;
-  background-color: #A64D4D;
+  display: table;
+}
+
+.jumbotron {
+  width: 100%;
+  background: url('../imgs/grey_wash_wall.png') repeat center center;
   font-family: 'Raleway', sans-serif;
-  font-size: 5em;
-  color: #CECECE;
+  color: #FFFFFF
   font-weight: 300;
   text-align: center;
-  display: table;
 }
 
 #heading-text {
   display: table-cell;
   vertical-align: middle;
+}
+
+#heading-text > p {
+  color: #FFFFFF;
+}
+
+#heading-text > p > a {
+  color: inherit;
+}
+
+.lamem-text {
+  color: #A31F34;
+  font-size: 1.25em;
+   -webkit-text-fill-color: #FFFFFF; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 3px;
+   -webkit-text-stroke-color: #A31F34;
 }
 
 .row {
@@ -83,6 +103,14 @@ body {
       padding-bottom: 1px;
 }
 
+.section-header {
+  font-family: 'Roboto Slab'; 
+  font-weight: 700;
+  font-size: 2em;
+  color: #A31F34;
+  float: center;
+}
+
 .row-title {
   display: table-cell; 
   vertical-align: middle;
@@ -93,6 +121,13 @@ body {
 .title-emph {
   font-family: 'Roboto Slab'; 
   font-weight: 700;
+}
+
+.btn-reference {
+  background-color: transparent;
+  border: 1px solid;
+  margin: 4px;
+  color: #A31F34;
 }
 
     

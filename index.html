@@ -13,9 +13,11 @@
 
     <!-- Custom styles for this template -->
     <link href="./css/index.css" rel="stylesheet">
+    <!--<link href="./css/commmon.css" rel="stylesheet">-->
     <link rel="stylesheet" href="./css/dropzone.css">
     <link href='http://fonts.googleapis.com/css?family=Raleway:600,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- some good ol' javascript resources -->
     <script src="./js/dropzone.js"></script>
@@ -36,26 +38,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="font-size: 25px; font-family: 'Roboto Slab'; color: #FFFFFF;" href="#">LaMem</a>
+          <a class="navbar-brand" style="font-size: 1.75em; font-family: 'Roboto Slab'; color: #A31F34;" href="#">LaMem</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Demo</a></li>
-            <li><a href="explore.html">Explore</a></li>
-            <li><a href="#">Contact</a></li>
+          <ul id="topnav-links" class="nav navbar-nav">
+            <li class="active"><a href="#"><i class="fa fa-magic fa-fw" style="margin: 3px;"></i>Demo</a></li>
+            <li><a href="explore.html"><i class="fa fa-th fa-fw" style="margin: 3px;"></i>Explore</a></li>
+            <li><a href="#"><i class="fa fa-envelope-o fa-fw" style="margin: 3px;"></i>Contact</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
 
+    <div id="page-heading" class="jumbotron">
+      <div id="heading-text" class="container">
+        <p style="font-family: 'Roboto Slab'; font-weight: 700; font-size: 5em;">
+          <span class="lamem-text">La</span>rge-scale Image <span class="lamem-text">Mem</span>orability
+        </p>
+        <p>
+          <a href="http://people.csail.mit.edu/khosla">Aditya Khosla</a>, <a href="http://www.akhilr.com">Akhil Raju</a>, <a href="http://web.mit.edu/torralba/www/">Antonio Torralba</a>, <a href="http://cvcl.mit.edu/Aude.htm">Aude Oliva</a><br/>
+          Massachusetts Institute of Technology
+        </p>
+      </div>
+    </div>
 
     <div class="container" id="main-content">
-
-      <div id="page-heading" class="row">
-        <div id="heading-text">
-          <span style="font-family: 'Roboto Slab'; font-weight: 700; color: #FFFFFF">La</span>rge-scale Image <span style="font-family: 'Roboto Slab'; font-weight: 700; color: #FFFFFF">Mem</span>orability
-        </div>
-      </div>
       
       <div class="row" id="demo" style>
 
@@ -85,19 +92,19 @@
           </div>
         </div>
 
-        <div class="col-md-4" style="text-align: center; font-size: 2em;">
+        <div class="col-md-4" style="text-align: center; font-size: 1.5em;">
           <div class="underline-text">Original Image</div>
           <div style="margin-top: 7px;">
-            <img src="imgs/1.jpg" style="max-width: 100%;"></img><br/>
+            <img src="imgs/1.jpg" style="max-width: 100%; max-height: 512px;"></img><br/>
             Memorability: Low <br/>
             <span style="font-size: 1em;">(score: 0.555)</span>
           </div>
         </div>
 
-        <div class="col-md-4" style="text-align: center; font-size: 2em;">
+        <div class="col-md-4" style="text-align: center; font-size: 1.5em;">
           <div class="underline-text" style="margin-bottom: 10px;">Memorability Heat Map</div>
           <div style="margin-top: 7px;">
-            <img src="imgs/1.jpg" style="max-width: 100%;"></img>
+            <img src="imgs/1.jpg" style="max-width: 100%; max-height: 512px;"></img>
           </div>
         </div>
 
@@ -105,69 +112,47 @@
 
       <hr/>
 
-      <div class="row" id="how-it-works">
-
-        <div class="col-md-1"></div>
-        <div class="col-md-4" style="display: table;">
-            <div class="row-title" style="color: #333399;">
-              <span class="title-emph">H</span>ow it <br/>
-              <span class="title-emph">W</span>orks
+      <div class="row">
+        <div class="col-md-6" style="">
+            <div class="row" style="text-align: center; padding-top: 0px;">
+              <span class="section-header underline-text">
+                Download our paper
+              </span>
+            </div>
+            <div class="row">
+              <p>
+                Please cite the following paper if you use this service:<br/>
+                <i>Understanding and Predicting Image Memorability at a Large Scale</i><br/>
+                A. Khosla, A. S. Raju, A. Torralba and A. Oliva
+              </p>
+            </div>
+            <div class="row" style="text-align: center;">
+              <a href="#" class="btn btn-reference"><i class="fa fa-file-pdf-o" style="margin: 3px;"></i>PDF</a>
+              <a href="#" class="btn btn-reference"><i class="fa fa-book" style="margin: 3px;"></i>Bibtex</a>
             </div>
         </div>
-
-        <div class="col-md-6">
-          <div style="display: table;">
-            <div style="display: table-cell; vertical-align: middle;">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <div class="col-md-6" style="">
+            <div class="row" style="text-align: center; padding-top: 0px;">
+              <span class="section-header underline-text">
+                Image Memorability API
+              </span>
             </div>
+            <div class="row">
+              <p>
+                <b>Usage:</b> http://memorability.csail.mit.edu/cgi-bin/image.py?url=IMG_URL<br/>
+                <br/>
+                <b>Example:</b>
+                <a href="http://memorability.csail.mit.edu/cgi-bin/image.py?url=
+                http://memorability.csail.mit.edu/demo/1.jpg">http://memorability.csail.mit.edu/cgi-bin/image.py?url=
+                http://memorability.csail.mit.edu/demo/1.jpg</a> <br/>
+                <br/>
+                <b>Notice:</b> Please do not overload our server by querying repeatedly in a short period of time. This is a free service for academic research and education purposes only. It has no guarantee of any kind. For any questions or comments regarding this API or potential commercial applications, please contact <a href="contact.html">Aditya Khosla</a>.
+              </p>
           </div>
-        </div>
-        <div class="col-md-1"></div> <!--make sure they add up to 12 col's-->
-      </div> <!-- end how it works -->
-
-      <hr/>
-
-      <div class="row" id="explore-dataset">
-
-        <div class="col-md-1"></div>
-        <div class="col-md-6">
-          <div style="display: table;">
-            <div style="display: table-cell; vertical-align: middle;">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
+          
         </div>
 
-        <div class="col-md-4" style="display: table; text-align: right;">
-            <div class="row-title" style="color: #006600;">
-              <span class="title-emph">E</span>xplore the <br/>
-              <span class="title-emph">D</span>ataset
-            </div>
-        </div>        
-        <div class="col-md-1"></div> <!--make sure they add up to 12 col's-->
-      </div> <!-- end explore -->
-
-      <hr/>
-
-      <div class="row" id="our-paper">
-
-        <div class="col-md-1"></div>
-        <div class="col-md-4" style="display: table;">
-            <div class="row-title" style="color: #660066;">
-              <span class="title-emph">D</span>ownload our <br/>
-              <span class="title-emph">P</span>aper
-            </div>
-        </div>
-
-        <div class="col-md-6" style="display: table;">
-            <div style="display: table-cell; vertical-align: middle;">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-1"></div> <!--make sure they add up to 12 col's-->
-      </div> <!-- end our paper row -->
-
+      </div>
 
     </div>
       
