@@ -8,7 +8,7 @@ body {
 }
 
 .navbar-collapse {
-  width: 80%;
+  width: 75%;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -24,7 +24,11 @@ body {
 }
 
 #topnav-links > li > a:hover {
-  color: #A31F34;
+  color: #D72020;
+}
+
+#topnav-links > li > a.active:hover {
+  color: #F55;
 }
 
 #main-content {
@@ -64,12 +68,15 @@ body {
   color: inherit;
 }
 
+#heading-text > p.big-text {
+  font-family: 'Roboto Slab'; 
+  font-weight: 700; 
+  font-size: 5vw;
+}
+
 .lamem-text {
   color: #A31F34;
-  /*font-size: 1.25em;*/
-   -webkit-text-fill-color: #A31F34; /* Will override color (regardless of order) */
-   -webkit-text-stroke-width: 2px;
-   -webkit-text-stroke-color: #FFFFFF;
+  text-shadow: 1px 1px #F7F7F7, -1px -1px 0 #F7F7F7, 1px -1px #F7F7F7, -1px 1px 0 #F7F7F7;
 }
 
 .row {
@@ -89,8 +96,48 @@ body {
   height: 65px;
   overflow: hidden;
   display: inline-block;
-  margin: 10 10 10 10;
+  margin: 5px;
+  position: relative;
 }
+.img-container > img {
+  position:absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  max-height: 100%;
+  max-width: none;
+ }
+
+.img-container > .portrait {
+  max-width: 100%;
+  max-height: none;
+ }
+
+/* .thumbnail {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  overflow: hidden;
+  border: none;
+  padding: 0px;
+  margin: 0.25em;
+}
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.thumbnail img.portrait {
+  width: 100%;
+  height: auto;
+}*/
 
 .vertical-center {
   display: table-cell;
@@ -104,8 +151,8 @@ body {
 }
 
 .section-header {
-  font-family: 'Roboto Slab'; 
-  font-weight: 700;
+  /*font-family: 'Roboto Slab'; 
+  font-weight: 700;*/
   font-size: 2em;
   color: #A31F34;
   float: center;
@@ -130,5 +177,18 @@ body {
   color: #A31F34;
 }
 
+
+@media (max-width: 768px) {
+  /* change things for larger devices */
+  #heading-text > p.big-text {
+    font-size: 10vw;
+  }
+
+  .lamem-text {
+    color: #A31F34;
+    text-shadow: 2px 2px #F7F7F7, -2px -2px 0 #F7F7F7, 2px -2px #F7F7F7, -2px 2px 0 #F7F7F7;
+  }
+
+}
     
 }

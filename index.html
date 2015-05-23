@@ -20,7 +20,142 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- some good ol' javascript resources -->
+    <script src="./assets/js/jquery.js"></script>
     <script src="./js/dropzone.js"></script>
+    <script src="js/load-image.all.min.js"></script>
+    <script>
+    var recognitionResult = null;
+    var imageHeight = 0;
+    var imageWidth  = 0;
+    var maxWidth    = 100;
+    var maxHeight   = 450;
+    var imageScale  = 1;
+    var dispHeight  = 450;
+    var dispWidth   = 100;
+
+    function scaleProperly(){
+        if (imageHeight!=0 && imageWidth!=0){
+            imageScale = Math.min((maxHeight-35)/imageHeight,(maxWidth-35)/imageWidth,1);
+            dispHeight = Math.round(imageHeight * imageScale);
+            dispWidth  = Math.round(imageWidth  * imageScale);
+            $('#imageDiv').height(dispHeight+45);
+            $('#imageDiv').width(dispWidth+35);
+            $('#imageArea').height(dispHeight);
+            $('#imageArea').width(dispWidth);
+        }
+    }
+    function go(url) {
+        var bChecked = $('#detectObject').is(':checked');
+        $('#form')[0].reset();
+        $('#detectObject').attr('checked', bChecked);
+        document.getElementById("url").value = url;
+        $('#data').val('');
+        submitForm(); 
+    }    
+    function submitForm(){
+        if ($('#url').val()!='http://'){
+            $("#imageArea").css('width', 'auto');
+            $("#imageArea").css('height', 'auto');
+            $('#imageArea').attr('src', $('#url').val());
+        }
+        $('#imageDiv').show();
+        $("#random").val(new Date().getTime());
+        $("#resultArea").hide(); 
+        $('#resultArea').html('');
+        $("#statusText").html("<center>Computing... <img src='spinner.gif' /></center>");
+        $("#statusText").show();
+        $("#form").submit();
+        
+    }
+    function selectFile(input) {
+        if (input.files && input.files[0]) {
+            console.log('in select file!!')
+            var reader = new FileReader();
+            $('#centerDiv').show();
+            $('#url').val('http://');
+            reader.onload = function (e) {
+                $("#imageDiv").show();
+                $("#imageArea").css('width', 'auto');
+                $("#imageArea").css('height', 'auto');
+                $("#imageArea").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+            loadImage(input.files[0],
+              function(img){
+                $("#data").val(img.toDataURL("image/jpeg"));
+                submitForm();
+              },
+              {maxWidth: 400, maxHeight: 400, canvas: true}
+            );
+        }
+    }
+    function cmp(a, b) { 
+        return b[1] - a[1];
+    }
+    var iframeCount = 0;
+    function iframeLoaded(){
+        iframeCount = iframeCount+1;
+        if (iframeCount>1){
+            recognitionResult = jQuery.parseJSON($("#resIframe").contents().find("body").html());
+
+            if (recognitionResult.memscore==null){
+              $("#statusText").html("<center>Error! Please refresh and try again.</center>");
+            }else{
+            var score_string = 'Error';
+            var m = recognitionResult.memscore;
+            if(m<0.3){
+              score_string = 'Very Low';
+            }else if(m<0.5){
+              score_string = 'Low';
+            }else if(m<0.7){
+              score_string = 'Medium';
+            }else if(m<0.9){
+              score_string = 'High';
+            }else{
+              score_string = 'Very High';
+            }
+
+            $('#resultArea').html('<center><h1 style="margin-top:-10px" id="score">Memorability: ' + score_string + '</h1><p></p><h3>(<a href="#score" style="text-decoration: none; color: black" class="tooltip">score: ' + m + ' <img src="images/questionMark.png" class="superimg"><span style="font-size: 14px; font-weight: normal"><img class="callout" src="images/callout_black.gif" /><strong>What this means</strong><br/><div align="justify">The score ranges from 0 to 1, where 1 is the most memorable. If the score is 0.5, we expect roughly 50% of people who view this image to remember it after 100 seconds of viewing the original image.</div></span></a>)</h3></center>');
+              $("#statusText").hide(); 
+              $("#resultArea").show(); 
+            }
+        }
+    }
+
+    // $(document).ready(function() { 
+    //     maxWidth = $('#centerDiv').width();
+    //     $(window).resize(function() { 
+    //         maxWidth = $('#centerDiv').width();
+    //         scaleProperly();
+    //     });
+    //     $('#imageArea').load(function() { 
+    //         imageHeight = $('#imageArea').height();
+    //         imageWidth  = $('#imageArea').width();
+    //         scaleProperly();
+    //     });
+    //     //$("#demoblock").height($("#apiblock").height());
+    // });    
+
+    function runBtn(){
+        var url = document.getElementById("url").value;
+        $('#form')[0].reset();
+        document.getElementById("url").value = url;
+        $('#data').val('');
+        submitForm();
+    }
+
+    function popup(mylink, windowname)
+    {
+      if (! window.focus)return true;
+      var href;
+      if (typeof(mylink) == 'string')
+         href=mylink;
+      else
+         href=mylink.href;
+      window.open(href, windowname, 'width=800,height=300,scrollbars=yes,menubar=no');
+      return false;
+    }
+    </script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,20 +166,20 @@
   <body>
 
     <div id="top-menu" class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container" style="width: 80%;">
+      <div class="container" style="width: 75%;">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="font-size: 1.75em; font-family: 'Roboto Slab'; color: #A31F34;" href="#">LaMem</a>
+          <a class="navbar-brand" style="font-size: 1.75em; font-family: 'Roboto Slab'; color: #A31F34;" href="">LaMem</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul id="topnav-links" class="nav navbar-nav">
-            <li class="active"><a href="#"><i class="fa fa-magic fa-fw" style="margin: 3px;"></i>Demo</a></li>
+            <li class="active"><a href=""><i class="fa fa-magic fa-fw" style="margin: 3px;"></i>Demo</a></li>
             <li><a href="explore.html"><i class="fa fa-th fa-fw" style="margin: 3px;"></i>Explore</a></li>
-            <li><a href="contact.html"><i class="fa fa-envelope-o fa-fw" style="margin: 3px;"></i>Contact</a></li>
+            <li><a href="download.html"><i class="fa fa-download fa-fw" style="margin: 3px;"></i>Download</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -52,8 +187,8 @@
 
     <div id="page-heading" class="jumbotron">
       <div id="heading-text" class="container">
-        <p style="font-family: 'Roboto Slab'; font-weight: 700; font-size: 5em;">
-          <span class="lamem-text">La</span>rge-scale Image <span class="lamem-text">Mem</span>orability
+        <p class="big-text" style="">
+          <span class="lamem-text" style="margin-right: 2px;">La</span>rge-scale Image <span class="lamem-text" style="margin-right: 2px;">Mem</span>orability
         </p>
         <p>
           <a href="http://people.csail.mit.edu/khosla">Aditya Khosla</a>, <a href="http://www.akhilr.com">Akhil Raju</a>, <a href="http://web.mit.edu/torralba/www/">Antonio Torralba</a>, <a href="http://cvcl.mit.edu/Aude.htm">Aude Oliva</a><br/>
@@ -66,45 +201,58 @@
       
       <div class="row" id="demo" style>
 
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
           <div id="file-upload">
             <strong>How memorable is your image? Upload to find out!</strong>
-            <form action="/upload-target" class="dropzone" style="margin-top: 10px;"></form>
+            <!-- <form action="selectFile(this)" id="file_form" class="dropzone" style="margin-top: 10px; min-height: 50px;" onchange="selectFile(this);"></form> -->
+            <form id="file_form">
+              <input type="file" name="file_name" id="fileinput" onchange="selectFile(this);">
+            </form>
             <b>or</b> enter an image url:
             <div class="form-group" style="margin-top: 10px;">
-              <input type="text" class="form-control" id="webImageUrl" placeholder="Enter URL">
+              <form action="http://memorability.csail.mit.edu/cgi-bin/image.py" id="form" method="post" enctype="multipart/form-data" target="resIframe">
+                <input type="hidden" name="random" id="random" value="">
+                <input type="hidden" name="data" id="data" value="">
+                <input type="text" class="form-control" id="url" name="url" placeholder="Enter URL">
+                <input type="button" value="Run" onClick="runBtn();">
+              </form>
             </div>
             <b>or</b> choose one of these examples:
             <table align="center" style="margin-top: 5px;">
               <tr>
-                <td><div class="img-container"><img src="imgs/1.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/2.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/3.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/5.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/1.jpg" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/2.jpg" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/3.jpg" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/5.jpg" onclick="go(this.src);"></div></td>
               </tr>
               <tr>
-                <td><div class="img-container"><img src="imgs/6.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/7.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/8.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/9.jpg" class="imgthumb" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/6.jpg" class="portrait" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/7.jpg" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/8.jpg" class="portrait" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/9.jpg" onclick="go(this.src);"></div></td>
               </tr>
-            </table>
+            </table> 
           </div>
         </div>
 
-        <div class="col-md-4" style="text-align: center; font-size: 1.5em;">
-          <div class="underline-text">Original Image</div>
-          <div style="margin-top: 7px;">
-            <img src="imgs/1.jpg" style="max-width: 100%; max-height: 512px;"></img><br/>
-            Memorability: Low <br/>
-            <span style="font-size: 1em;">(score: 0.555)</span>
-          </div>
-        </div>
-
-        <div class="col-md-4" style="text-align: center; font-size: 1.5em;">
-          <div class="underline-text" style="margin-bottom: 10px;">Memorability Heat Map</div>
-          <div style="margin-top: 7px;">
-            <img src="imgs/1.jpg" style="max-width: 100%; max-height: 512px;"></img>
+        <div class="col-md-8  col-sm-6" id="centerDiv" style="text-align: center; font-size: 1.5em;">
+          <!-- <div id="centerDiv" class="content" style="display:none">
+              <div id="imageDiv" oncontextmenu="javascript:return false;" >
+                  <img id="imageArea" style="max-width: 100%; max-height: 100%;" />
+              </div>
+              <div style="text-align: left; ">
+                <center><h1 id="statusText" style="display:none;">Computing... <img src="spinner.gif" /></h1></center>
+                <div id="resultArea">
+                </div>
+              </div>
+          </div> -->
+          <div id="imageDiv" style="margin-top: 7px; float: center; display: none;">
+            <img id="imageArea" src="imgs/1.jpg" style="max-width: 100%; max-height: 100%;"></img><br/>
+            <div style="text-align: left; ">
+                <center><h1 id="statusText" style="display:none;">Computing... <img src="spinner.gif" /></h1></center>
+                <div id="resultArea">
+                </div>
+              </div>
           </div>
         </div>
 
@@ -114,11 +262,12 @@
 
       <div class="row">
         <div class="col-md-6" style="">
-            <div class="row" style="text-align: center; padding-top: 0px;">
-              <span class="section-header underline-text">
+            <div class="row" style="padding-top: 0px;">
+              <span class="section-header">
                 Download our paper
               </span>
             </div>
+            <hr style="padding-top: 0px; padding-bottom: 0px; margin: 0px;">
             <div class="row">
               <p>
                 Please cite the following paper if you use this service:<br/>
@@ -126,17 +275,19 @@
                 A. Khosla, A. S. Raju, A. Torralba and A. Oliva
               </p>
             </div>
-            <div class="row" style="text-align: center;">
+            <div class="row" style="padding-top: 0px;">
               <a href="#" class="btn btn-reference"><i class="fa fa-file-pdf-o" style="margin: 3px;"></i>PDF</a>
               <a href="#" class="btn btn-reference"><i class="fa fa-book" style="margin: 3px;"></i>Bibtex</a>
             </div>
         </div>
+
         <div class="col-md-6" style="">
-            <div class="row" style="text-align: center; padding-top: 0px;">
-              <span class="section-header underline-text">
+            <div class="row" style="padding-top: 0px;">
+              <span class="section-header">
                 Image Memorability API
               </span>
             </div>
+            <hr style="padding-top: 0px; padding-bottom: 0px; margin: 0px;">
             <div class="row">
               <p>
                 <b>Usage:</b> http://memorability.csail.mit.edu/cgi-bin/image.py?url=IMG_URL<br/>
@@ -163,7 +314,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./assets/js/jquery.js"></script>
     <script src="./js/bootstrap.min.js"></script>
   
 
