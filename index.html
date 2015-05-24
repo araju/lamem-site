@@ -54,8 +54,8 @@
     }    
     function submitForm(){
         if ($('#url').val()!='http://'){
-            $("#imageArea").css('width', 'auto');
-            $("#imageArea").css('height', 'auto');
+            // $("#imageArea").css('width', 'auto');
+            // $("#imageArea").css('height', 'auto');
             $('#imageArea').attr('src', $('#url').val());
         }
         $('#imageDiv').show();
@@ -199,6 +199,11 @@
 
     <div class="container" id="main-content">
       
+      <div style=" width: 0px; height: 0px; overflow: hidden;" >
+
+        <iframe src="" name="resIframe" id="resIframe" onload="iframeLoaded();" ></iframe>
+      </div> 
+
       <div class="row" id="demo" style>
 
         <div class="col-md-4 col-sm-6">
@@ -210,7 +215,7 @@
             </form>
             <b>or</b> enter an image url:
             <div class="form-group" style="margin-top: 10px;">
-              <form action="http://memorability.csail.mit.edu/cgi-bin/image.py" id="form" method="post" enctype="multipart/form-data" target="resIframe">
+              <form action="http://memorability.csail.mit.edu/cgi-bin/image2.py" id="form" method="post" enctype="multipart/form-data" target="resIframe">
                 <input type="hidden" name="random" id="random" value="">
                 <input type="hidden" name="data" id="data" value="">
                 <input type="text" class="form-control" id="url" name="url" placeholder="Enter URL">
