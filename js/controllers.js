@@ -42,3 +42,27 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http',
     //   }
     // };
 }]);
+
+var demoApp = angular.module('demoApp', []);
+
+demoApp.controller('DemoCtrl', ['$scope', '$http',
+  
+  function ($scope, $http) {
+    $scope.memscore = 0;
+
+    $scope.handleImage = function(url) {
+      console.log(url);
+      $http.post('http://memorability.csail.mit.edu/cgi-bin/image.py', {'url': url}).success(
+          function(data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log('got resposne');
+            $scope.memscore = data['memscore'];
+          }).error(
+          function(data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+            console.log('got error');
+          }); 
+    };
+}]);

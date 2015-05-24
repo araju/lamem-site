@@ -1,4 +1,4 @@
-<html lang="en"><head>
+<html lang="en" ng-app="demoApp"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="homepage">
@@ -21,6 +21,8 @@
 
     <!-- some good ol' javascript resources -->
     <script src="./assets/js/jquery.js"></script>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/controllers.js"></script>
     <script src="./js/dropzone.js"></script>
     <script src="js/load-image.all.min.js"></script>
     <script>
@@ -45,12 +47,24 @@
         }
     }
     function go(url) {
+        url = 'http://i.imgur.com/JXkTpD5.jpg';
         var bChecked = $('#detectObject').is(':checked');
         $('#form')[0].reset();
         $('#detectObject').attr('checked', bChecked);
         document.getElementById("url").value = url;
         $('#data').val('');
-        submitForm(); 
+        // handleImage(url);
+        submitForm();
+        // $http.post('http://memorability.csail.mit.edu/cgi-bin/image.py', {'url': url}).success(
+        //   function(data, status, headers, config) {
+        //     // this callback will be called asynchronously
+        //     // when the response is available
+        //     console.log('got resposne')
+        //   }).error(
+        //   function(data, status, headers, config) {
+        //     // called asynchronously if an error occurs
+        //     // or server returns response with an error status.
+        //   }); 
     }    
     function submitForm(){
         if ($('#url').val()!='http://'){
@@ -64,7 +78,9 @@
         $('#resultArea').html('');
         $("#statusText").html("<center>Computing... <img src='spinner.gif' /></center>");
         $("#statusText").show();
-        $("#form").submit();
+        // $("#form").submit();
+        handleImage($('#url').val());
+
         
     }
     function selectFile(input) {
@@ -88,6 +104,9 @@
               {maxWidth: 400, maxHeight: 400, canvas: true}
             );
         }
+    }
+    function handleImage(url) {
+      angular.element($('#democontroller')).scope().handleImage(url);
     }
     function cmp(a, b) { 
         return b[1] - a[1];
@@ -163,7 +182,7 @@
       <script src="../../assets/js/respond.min.js"></script>
     <![endif]-->
   <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
-  <body>
+  <body ng-controller="DemoCtrl" id="democontroller">
 
     <div id="top-menu" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container" style="width: 75%;">
@@ -215,7 +234,7 @@
             </form>
             <b>or</b> enter an image url:
             <div class="form-group" style="margin-top: 10px;">
-              <form action="http://memorability.csail.mit.edu/cgi-bin/image2.py" id="form" method="post" enctype="multipart/form-data" target="resIframe">
+              <form action="http://memorability.csail.mit.edu/cgi-bin/image.py" id="form" method="post" enctype="multipart/form-data" target="resIframe">
                 <input type="hidden" name="random" id="random" value="">
                 <input type="hidden" name="data" id="data" value="">
                 <input type="text" class="form-control" id="url" name="url" placeholder="Enter URL">
@@ -225,9 +244,9 @@
             <b>or</b> choose one of these examples:
             <table align="center" style="margin-top: 5px;">
               <tr>
-                <td><div class="img-container"><img src="imgs/1.jpg" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/2.jpg" onclick="go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/3.jpg" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/1.jpg" ng-click="handleImage(this.src); go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/2.jpg" onclick="handleImage(this.src); go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/3.jpg" onclick="handleImage(this.src); go(this.src);"></div></td>
                 <td><div class="img-container"><img src="imgs/5.jpg" onclick="go(this.src);"></div></td>
               </tr>
               <tr>
