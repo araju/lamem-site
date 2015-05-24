@@ -52,7 +52,7 @@ demoApp.controller('DemoCtrl', ['$scope', '$http',
 
     $scope.handleImage = function(url) {
       console.log(url);
-      $http.post('http://memorability.csail.mit.edu/cgi-bin/image.py', {'url': url}).success(
+      $http.get('http://memorability.csail.mit.edu/cgi-bin/image.py', {params: {'url': url}}).success(
           function(data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
