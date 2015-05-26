@@ -7,7 +7,7 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
     $scope.images = [];
     $scope.possibleImages = [];
     $scope.allImages = [];
-    $http.get('data/allimages.json').success(function(data) {
+    $http.get('data/images.json').success(function(data) {
       $scope.allImages = data;
       //$scope.images = $scope.allImages.slice(0,12);
       console.log('calling from here');
@@ -24,7 +24,10 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
     });
     // $scope.images = [];
     $scope.sortStat = 'memscore';
+    $scope.sortStatName = 'Memorability (hi to lo)';
     $scope.reverse = true;
+    $scope.furtherFilterName = 'All';
+    $scope.furtherFilter = '';
 
     $scope.sortAndFilter = function() {
       console.log($scope.selectedDataset.displayname);
