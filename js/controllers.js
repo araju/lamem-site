@@ -1,18 +1,23 @@
 var imagesApp = angular.module('imagesApp', ['infinite-scroll']);
 
-imagesApp.controller('ImageListCtrl', ['$scope', '$http',
+imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
   
-  function ($scope, $http) {
+  function ($scope, $http, $filter) {
     angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 500);
     $scope.images = [];
+    $scope.possibleImages = [];
     $scope.allImages = [];
-    $http.get('data/images.json').success(function(data) {
+    $http.get('data/allimages.json').success(function(data) {
       $scope.allImages = data;
       //$scope.images = $scope.allImages.slice(0,12);
-      for (var i = 0; i < 5; i++) {
-        $scope.images.push($scope.allImages[i]);
+      console.log('calling from here');
+      $scope.sortAndFilter();
+      for (var i = 0; i < 20; i++) {
+        $scope.images.push($scope.possibleImages[i]);
       }
+      
     });
+    //$scope.selectedDataset.filtername = '';
     $http.get('data/datasets.json').success(function(data) {
       $scope.datasets = data;
       $scope.selectedDataset = $scope.datasets[0];
@@ -21,17 +26,39 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http',
     $scope.sortStat = 'memscore';
     $scope.reverse = true;
 
-    
+    $scope.sortAndFilter = function() {
+      console.log($scope.selectedDataset.displayname);
+      $scope.possibleImages = $filter('filter')($scope.allImages, $scope.selectedDataset.filtername, false);
+      console.log($scope.possibleImages.length);
+      $scope.possibleImages = $filter('orderBy')($scope.possibleImages, $scope.sortStat, $scope.reverse);
+     console.log('in sort and filter');
+     console.log($scope.possibleImages.length);
+    };
 
     $scope.loadMore = function() {
       console.log("loading more");
       var last = $scope.images.length;
-      if (last < $scope.allImages.length) {
-        for(var i = 0; i < 5; i++) {
-          $scope.images.push($scope.allImages[last + i]);
+      var cur = 0;
+      var count = 0;
+      if (cur < $scope.possibleImages.length) {
+        while(count < 3 && cur < $scope.possibleImages.length) {
+          if (!contains($scope.images, $scope.possibleImages[cur])) {
+            $scope.images.push($scope.possibleImages[cur]);
+            count++;
+          }
+          cur++;
         }
       }
     };
+
+    var contains = function(arr, img) {
+      for (var i=0; i < arr.length; i++) {
+        if (arr[i].name === img.name) {
+          return true;
+        }
+      }
+      return false;
+    }
     
 
 

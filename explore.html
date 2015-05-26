@@ -72,14 +72,14 @@
             <ul class="nav nav-list" >
               <li class="disabled">Select a dataset:</li>
               <li ng-repeat="dataset in datasets" ng-class="$parent.selectedDataset === dataset ? 'active-link' : 'inactive-link'">
-                <a href ng-click="$parent.selectedDataset = dataset">{{dataset.displayname}}</a>
+                <a href ng-click="$parent.selectedDataset = dataset; sortAndFilter();">{{dataset.displayname}}</a>
               </li>
             </ul>
             <hr/>
             <ul class="nav nav-list">
               <li class="disabled">Sort by:</li>
               <li ng-repeat="stat in selectedDataset.sortStats" ng-class="($parent.sortStat === stat.stat) && ($parent.reverse === stat.reverse)? 'active-link' : 'inactive-link'">
-                <a href="" ng-click="$parent.sortStat = stat.stat; $parent.reverse = stat.reverse">{{stat.name}}</a>
+                <a href="" ng-click="$parent.sortStat = stat.stat; $parent.reverse = stat.reverse; sortAndFilter();">{{stat.name}}</a>
               </li>
             </ul>
           </div>
