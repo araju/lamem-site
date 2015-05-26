@@ -162,6 +162,36 @@ div.center-cropped img {
   transform: translateX(-50%);
 }
 
+#filter-menu{
+  width: 100%;
+}
+
+#filter-menu.affix-top{
+  z-index:10;
+  height:50px;
+  background-color: #4d4d4d;
+  border:0;
+  font-family: 'Raleway', sans-serif;
+  font-weight:300;
+  font-size:1em;
+  color:#FFFFFF;
+}
+
+#filter-menu.affix{
+  position: fixed;
+  top:50px;
+  z-index:10;
+  -webkit-transition: all .6s ease-in-out;
+
+}
+
+#filter-menu .navbar-nav > li > a{
+  color:#FFFFFF;
+}
+
+#filter-menu .navbar-nav > .navbar-text{
+ color:#FFFFFF;
+}
 @media (max-width: 768px) {
   /* change things for smaller devices */
   #heading-text > p.big-text {

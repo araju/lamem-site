@@ -141,15 +141,8 @@
 
         <div class="col-md-12">
 
-          <!--<ul style="text-align: center;">
-            <li ng-repeat="img in images | filter:selectedDataset.filtername | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none;">
-              <a href="#" class="thumbnail">
-                <img class="lazy" data-original="{{name}}" ng-init="name = 'imgs/' + img.name" ng-mouseenter="name = 'imgs/' + img.heatmap" ng-mouseleave="name = 'imgs/' + img.name">
-              </a>
-            </li>
-          </ul>-->
           <div id="images-field" infinite-scroll='loadMore()' infinite-scroll-distance='0' style="text-align: center;">
-            <div class="center-cropped" ng-repeat="img in images | filter:selectedDataset.filtername | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none; ">
+            <div class="center-cropped" ng-repeat="img in images | filter:selectedDataset.filtername | filter:furtherFilter | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none; ">
               <img class="img-responsive" ng-src="{{name}}" ng-init="name = 'imgs/' + img.name" ng-mouseenter="name = 'imgs/' + img.heatmap" ng-mouseleave="name = 'imgs/' + img.name" >
             </div>
           </div>
