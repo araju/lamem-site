@@ -24,7 +24,18 @@
     <script src="./assets/js/jquery.js"></script>
     <script src="./js/angular.min.js"></script>
     <script src="./js/controllers.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <script type='text/javascript' src='./js/ng-infinite-scroll.js'></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#filter-menu').affix({
+        offset: {
+          top: $('#top-menu').height() + $('#page-heading').height()
+        }
+      }); 
+    });
+    </script>
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,7 +67,7 @@
       </div>
     </div>
 
-    <div id="page-heading" class="jumbotron">
+    <div id="page-heading" class="jumbotron" style="margin-bottom: 0px;">
       <div id="heading-text" class="container">
         <p style="font-family: 'Roboto Slab'; font-weight: 700; font-size: 5em;">
           <span class="lamem-text">LaMem</span> Dataset
@@ -64,10 +75,53 @@
       </div>
     </div>
 
+    <div class="navbar navbar-inverse navbar-static-top" id="filter-menu">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="navbar-text">Select a dataset:</li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{selectedDataset.displayname}}<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="dataset in datasets" ng-class="$parent.selectedDataset === dataset ? 'active-link' : 'inactive-link'">
+                <a href ng-click="$parent.selectedDataset = dataset; sortAndFilter();">{{dataset.displayname}}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navbar-text">Sort by:</li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{sortStatName}}<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="stat in selectedDataset.sortStats" ng-class="($parent.sortStat === stat.stat) && ($parent.reverse === stat.reverse)? 'active-link' : 'inactive-link'">
+                <a href="" ng-click="$parent.sortStat = stat.stat; $parent.reverse = stat.reverse; $parent.sortStatName = stat.name; sortAndFilter();">{{stat.name}}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navbar-text">Filter:</li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{furtherFilterName}}<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="filt in selectedDataset.furtherFilters" ng-class="($parent.furtherFilterName === filt.name) ? 'active-link' : 'inactive-link'">
+                <a href="" ng-click="$parent.furtherFilter = filt.filter; $parent.furtherFilterName = filt.name; sortAndFilter();">{{filt.name}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container -->
+    </div><!--/.navbar -->
+
     <div class="container" id="main-content">      
       
       <div class="row">
-        <div class="col-md-3" id="side-nav" style="padding-right: 0px; height: 100%">
+        <!-- <div class="col-md-3" id="side-nav" style="padding-right: 0px; height: 100%">
           <div class="well well-nav affix-top" data-spy="affix"  data-offset-top="200" style="top: 70px;">
             <ul class="nav nav-list" >
               <li class="disabled">Select a dataset:</li>
@@ -83,19 +137,12 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
 
-        <div class="col-md-9">
+        <div class="col-md-12">
 
-          <!--<ul style="text-align: center;">
-            <li ng-repeat="img in images | filter:selectedDataset.filtername | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none;">
-              <a href="#" class="thumbnail">
-                <img class="lazy" data-original="{{name}}" ng-init="name = 'imgs/' + img.name" ng-mouseenter="name = 'imgs/' + img.heatmap" ng-mouseleave="name = 'imgs/' + img.name">
-              </a>
-            </li>
-          </ul>-->
           <div id="images-field" infinite-scroll='loadMore()' infinite-scroll-distance='0' style="text-align: center;">
-            <div class="center-cropped" ng-repeat="img in images | filter:selectedDataset.filtername | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none; ">
+            <div class="center-cropped" ng-repeat="img in images | filter:selectedDataset.filtername | filter:furtherFilter | orderBy:sortStat:reverse" style="margin: 5px; display: inline-block; float: none; ">
               <img class="img-responsive" ng-src="{{name}}" ng-init="name = 'imgs/' + img.name" ng-mouseenter="name = 'imgs/' + img.heatmap" ng-mouseleave="name = 'imgs/' + img.name" >
             </div>
           </div>
@@ -112,8 +159,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
-    <script src="./js/bootstrap.min.js"></script>
     
 
 </body></html>
