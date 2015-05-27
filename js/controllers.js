@@ -7,14 +7,14 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
     $scope.images = [];
     $scope.possibleImages = [];
     $scope.allImages = [];
-    $http.get('data/images.json').success(function(data) {
+    $http.get('data/allimages2.json').success(function(data) {
       $scope.allImages = data;
       //$scope.images = $scope.allImages.slice(0,12);
       console.log('calling from here');
       $scope.sortAndFilter();
-      for (var i = 0; i < 20; i++) {
-        $scope.images.push($scope.possibleImages[i]);
-      }
+     // for (var i = 0; i < 20; i++) {
+     //   $scope.images.push($scope.possibleImages[i]);
+     // }
       
     });
     //$scope.selectedDataset.filtername = '';
@@ -30,12 +30,41 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
     $scope.furtherFilter = '';
 
     $scope.sortAndFilter = function() {
-      console.log($scope.selectedDataset.displayname);
+      //console.log($scope.selectedDataset.displayname);
       $scope.possibleImages = $filter('filter')($scope.allImages, $scope.selectedDataset.filtername, false);
-      console.log($scope.possibleImages.length);
-      $scope.possibleImages = $filter('orderBy')($scope.possibleImages, $scope.sortStat, $scope.reverse);
-     console.log('in sort and filter');
+     // console.log($scope.possibleImages.length);
+      $scope.possibleImages = $filter('filter')($scope.possibleImages, $scope.furtherFilter, false);
+      $scope.possibleImages = $filter('orderBy')($scope.possibleImages, $scope.sortFunc, $scope.reverse);
+     //console.log('in sort and filter');
      console.log($scope.possibleImages.length);
+     $scope.images = [];
+     $scope.loadMore();
+    };
+    
+    $scope.selectDataset = function(dataset) {
+      $scope.selectedDataset = dataset;
+      $scope.sortStat = 'memscore';
+      $scope.sortStatName = 'Memorability (hi to lo)';
+      $scope.reverse = true;
+      $scope.furtherFilterName = 'All';
+      $scope.furtherFilter = '';
+    }
+
+    $scope.sortFunc = function(img) {
+      var slash = img.name.indexOf("/");
+      var dot = img.name.indexOf(".");
+      var num = parseInt(img.name.substring(slash+1, dot));
+      // the following is very hacky!!!!
+      // HARD-CODING AHEAD!
+      if ($scope.sortStat === 'memscore') {
+        return img.memscore*1000 + (num*0.00001);
+      } else if ($scope.sortStat === 'aesthetics') {
+        return img.aesthetics + (num*0.00001);
+      } else if ($scope.sortStat === 'popularity') {
+        return img.popularity + (num*0.00001);
+      } else {
+        return img.memscore;
+      }
     };
 
     $scope.loadMore = function() {
@@ -44,7 +73,7 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
       var cur = 0;
       var count = 0;
       if (cur < $scope.possibleImages.length) {
-        while(count < 3 && cur < $scope.possibleImages.length) {
+        while((count < 3 || $scope.images.length < 20) && cur < $scope.possibleImages.length) {
           if (!contains($scope.images, $scope.possibleImages[cur])) {
             $scope.images.push($scope.possibleImages[cur]);
             count++;

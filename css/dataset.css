@@ -181,8 +181,6 @@ div.center-cropped img {
   position: fixed;
   top:50px;
   z-index:10;
-  -webkit-transition: all .6s ease-in-out;
-
 }
 
 #filter-menu .navbar-nav > li > a{

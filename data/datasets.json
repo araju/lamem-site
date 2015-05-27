@@ -13,11 +13,17 @@
                 "reverse": false,
                 "name": "Memorability (lo to hi)"
             }
+        ],
+        "furtherFilters": [
+            {
+                "name": "All",
+                "filter": ""
+            }
         ]
     },
     {
         "displayname": "Emotions",
-        "filtername": "emotions",
+        "filtername": "art",
         "sortStats": [
             {
                 "stat": "memscore",
@@ -28,17 +34,51 @@
                 "stat": "memscore",
                 "reverse": false,
                 "name": "Memorability (lo to hi)"
+            }
+        ],
+        "furtherFilters": [
+            {
+                "name": "All",
+                "filter": ""
             },
             {
-                "stat": "emotion",
-                "reverse": false,
-                "name": "Emotions (???)"
+                "name": "Disugust",
+                "filter": "disgust"
+            },
+            {
+                "name": "Amusement",
+                "filter": "amusement"
+            },
+            {
+                "name": "Fear",
+                "filter": "fear"
+            },
+            {
+                "name": "Anger",
+                "filter": "anger"
+            },
+            {
+                "name": "Excitement",
+                "filter": "excitement"
+            },
+            {
+                "name": "Sad",
+                "filter": "sad"
+            },
+            {
+                "name": "Awe",
+                "filter": "awe"
+            },
+            {
+                "name": "Contentment",
+                "filter": "contentment"
             }
         ]
+
     },
     {
         "displayname": "Aesthetics",
-        "filtername": "aesthetics",
+        "filtername": "ava",
         "sortStats": [
             {
                 "stat": "memscore",
@@ -60,11 +100,18 @@
                 "reverse": false,
                 "name": "Aesthetics (lo to hi)"
             }
+        ],
+        "furtherFilters": [
+            {
+                "name": "All",
+                "filter": ""
+            }
         ]
+
     },
     {
         "displayname": "Popularity",
-        "filtername": "popularity",
+        "filtername": "popularityvso",
         "sortStats": [
             {
                 "stat": "memscore",
@@ -77,16 +124,23 @@
                 "name": "Memorability (lo to hi)"
             },
             {
-                "stat": "popscore",
+                "stat": "popularity",
                 "reverse": true,
                 "name": "Popularity (hi to lo)"
             },
             {
-                "stat": "popscore",
+                "stat": "popularity",
                 "reverse": false,
                 "name": "Popularity (lo to hi)"
             }
+        ],
+        "furtherFilters": [
+            {
+                "name": "All",
+                "filter": ""
+            }
         ]
+
     },
     {
         "displayname": "COCO",
@@ -102,6 +156,60 @@
                 "reverse": false,
                 "name": "Memorability (lo to hi)"
             }
+        ],
+        "furtherFilters": [
+            {
+                "name": "All",
+                "filter": ""
+            }
         ]
+
+    },
+    {
+        "displayname": "Abnormal",
+        "filtername": "abnormal",
+        "sortStats": [
+            {
+                "stat": "memscore",
+                "reverse": true,
+                "name": "Memorability (hi to lo)"
+            },
+            {
+                "stat": "memscore",
+                "reverse": false,
+                "name": "Memorability (lo to hi)"
+            }
+        ],
+        "furtherFilters": [
+            {
+                "name": "All",
+                "filter": ""
+            }
+        ]
+
+    },
+    {
+        "displayname": "MIR Flickr",
+        "filtername": "mirflickr",
+        "sortStats": [
+            {
+                "stat": "memscore",
+                "reverse": true,
+                "name": "Memorability (hi to lo)"
+            },
+            {
+                "stat": "memscore",
+                "reverse": false,
+                "name": "Memorability (lo to hi)"
+            }
+        ],
+        "furtherFilters": [
+            {
+                "name": "All",
+                "filter": ""
+            }
+        ]
+
     }
+
 ]
