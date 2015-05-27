@@ -12,7 +12,8 @@
     <link href="./css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./css/index.css" rel="stylesheet">
+		<link href="./css/index.css" rel="stylesheet">
+		<link href="./css/questionMark.css" rel="stylesheet">
     <!--<link href="./css/commmon.css" rel="stylesheet">-->
     <link rel="stylesheet" href="./css/dropzone.css">
     <link href='http://fonts.googleapis.com/css?family=Raleway:600,300' rel='stylesheet' type='text/css'>
@@ -47,10 +48,7 @@
         }
     }
     function go(url) {
-        url = 'http://i.imgur.com/JXkTpD5.jpg';
-        var bChecked = $('#detectObject').is(':checked');
         $('#form')[0].reset();
-        $('#detectObject').attr('checked', bChecked);
         document.getElementById("url").value = url;
         $('#data').val('');
         // handleImage(url);
@@ -78,8 +76,8 @@
         $('#resultArea').html('');
         $("#statusText").html("<center>Computing... <img src='spinner.gif' /></center>");
         $("#statusText").show();
-        // $("#form").submit();
-        handleImage($('#url').val());
+        $("#form").submit();
+        //handleImage($('#url').val());
 
         
     }
@@ -134,7 +132,7 @@
               score_string = 'Very High';
             }
 
-            $('#resultArea').html('<center><h1 style="margin-top:-10px" id="score">Memorability: ' + score_string + '</h1><p></p><h3>(<a href="#score" style="text-decoration: none; color: black" class="tooltip">score: ' + m + ' <img src="images/questionMark.png" class="superimg"><span style="font-size: 14px; font-weight: normal"><img class="callout" src="images/callout_black.gif" /><strong>What this means</strong><br/><div align="justify">The score ranges from 0 to 1, where 1 is the most memorable. If the score is 0.5, we expect roughly 50% of people who view this image to remember it after 100 seconds of viewing the original image.</div></span></a>)</h3></center>');
+            $('#resultArea').html('<center><h1 style="margin-top:0px" id="score">Memorability: ' + score_string + '</h1><p></p><h3>(<a href="#score" style="text-decoration: none; color: black" class="questionMark">score: ' + m + ' <img src="imgs/questionMark.png" class="superimg"><span style="font-size: 14px; font-weight: normal"><img class="callout" src="imgs/callout_black.gif" /><strong>What this means</strong><br/><div align="justify">The score ranges from 0 to 1, where 1 is the most memorable. If the score is 0.5, we expect roughly 50% of people who view this image to remember it after 100 seconds of viewing the original image.</div></span></a>)</h3></center>');
               $("#statusText").hide(); 
               $("#resultArea").show(); 
             }
@@ -244,7 +242,7 @@
             <b>or</b> choose one of these examples:
             <table align="center" style="margin-top: 5px;">
               <tr>
-                <td><div class="img-container"><img src="imgs/1.jpg" ng-click="handleImage(this.src); go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/1.jpg" onclick="go(this.src);"></div></td>
                 <td><div class="img-container"><img src="imgs/2.jpg" onclick="handleImage(this.src); go(this.src);"></div></td>
                 <td><div class="img-container"><img src="imgs/3.jpg" onclick="handleImage(this.src); go(this.src);"></div></td>
                 <td><div class="img-container"><img src="imgs/5.jpg" onclick="go(this.src);"></div></td>
