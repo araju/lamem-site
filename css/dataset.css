@@ -111,7 +111,22 @@ div.center-cropped img {
   transform: translateX(-50%);
   z-index: 1;
 }
-div.center-cropped div {
+
+div.center-cropped .heatmap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+  display: none;
+}
+
+div.center-cropped:hover .heatmap {
+  display: block;
+}
+
+div.center-cropped div.stat {
   position: absolute;
   left: 85%;
   right: 0%;
