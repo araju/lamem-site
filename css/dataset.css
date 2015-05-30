@@ -101,6 +101,7 @@ div.center-cropped {
   width: 200px;
   height: 200px;
   overflow:hidden;
+  position: relative;
 }
 div.center-cropped img {
   min-height: 100%;
@@ -108,7 +109,32 @@ div.center-cropped img {
   left: 50%;
   position: relative;
   transform: translateX(-50%);
+  z-index: 1;
 }
+div.center-cropped div {
+  position: absolute;
+  left: 85%;
+  right: 0%;
+  bottom: 0;
+  padding: 4px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  overflow: hidden;
+}
+div.center-cropped div.blackbg {
+  z-index: 2;
+  background-color: #000;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+div.center-cropped div.label {
+  z-index: 3;
+  color: white;
+  padding-bottom: 16px;
+}
+
 
 #filter-menu{
   width: 100%;

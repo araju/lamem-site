@@ -90,7 +90,20 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
         }
       }
       return false;
-    }
+    };
+
+    $scope.getStat = function(img) {
+      if ($scope.sortStat === 'memscore') {
+        return img.memscore;
+      } else if ($scope.sortStat === 'aesthetics') {
+        return img.aesthetics;
+      } else if ($scope.sortStat === 'popularity') {
+        //console.log(img.popularity);
+        return img.popularity;
+      } else {
+        return img.memscore;
+      }
+    };
     
 
 
