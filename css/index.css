@@ -71,7 +71,7 @@ body {
 #heading-text > p.big-text {
   font-family: 'Roboto Slab'; 
   font-weight: 700; 
-  font-size: 5vw;
+  font-size: 5em;
 }
 
 .lamem-text {
