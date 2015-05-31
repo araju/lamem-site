@@ -1,8 +1,8 @@
 var imagesApp = angular.module('imagesApp', ['infinite-scroll']);
 
-imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
+imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter', '$window',
   
-  function ($scope, $http, $filter) {
+  function ($scope, $http, $filter, $window) {
     angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 500);
     $scope.images = [];
     $scope.possibleImages = [];
@@ -77,8 +77,9 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
       var last = $scope.images.length;
       var cur = 0;
       var count = 0;
+      var minNum = ($window.innerHeight / 200) * ($window.innerWidth / 200);
       if (cur < $scope.possibleImages.length) {
-        while((count < 3 || $scope.images.length < 20) && cur < $scope.possibleImages.length) {
+        while((count < 3 || $scope.images.length < minNum) && cur < $scope.possibleImages.length) {
           if (!contains($scope.images, $scope.possibleImages[cur])) {
             $scope.images.push($scope.possibleImages[cur]);
             count++;
