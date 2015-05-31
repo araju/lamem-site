@@ -7,6 +7,10 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
     $scope.images = [];
     $scope.possibleImages = [];
     $scope.allImages = [];
+
+    $scope.spinnerStyle = "display: block; text-align: center;";
+    $scope.imagesStyle = "display: none;";
+
     $http.get('data/allimages2.json').success(function(data) {
       $scope.allImages = data;
       //$scope.images = $scope.allImages.slice(0,12);
@@ -15,7 +19,8 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter',
      // for (var i = 0; i < 20; i++) {
      //   $scope.images.push($scope.possibleImages[i]);
      // }
-      
+      $scope.spinnerStyle = "display: none";
+      $scope.imagesStyle = "";
     });
     //$scope.selectedDataset.filtername = '';
     $http.get('data/datasets.json').success(function(data) {
