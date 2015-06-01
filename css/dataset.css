@@ -80,6 +80,11 @@ body {
   text-shadow: 2px 2px #F7F7F7, -2px -2px 0 #F7F7F7, 2px -2px #F7F7F7, -2px 2px 0 #F7F7F7;
 }
 
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 #side-nav > .btn-group-vertical > button {
   border: medium none;
   border-left: solid 1px;

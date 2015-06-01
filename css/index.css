@@ -82,9 +82,11 @@ body {
 .row {
   /*height: 100%;*/
   padding-top: 15px;
-  padding-left: 30px;
-  padding-right: 30px;
+ /* padding-left: 30px;
+  padding-right: 30px;*/
   /*display: table;*/
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 #file-upload {
