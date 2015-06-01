@@ -22,9 +22,9 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter', '$window',
       $scope.spinnerStyle = "display: none";
       $scope.imagesStyle = "";
     });
-    //$scope.selectedDataset.filtername = '';
     $http.get('data/datasets.json').success(function(data) {
       $scope.datasets = data;
+      console.log('got datasets');
       $scope.selectedDataset = $scope.datasets[0];
     });
     // $scope.images = [];
@@ -33,6 +33,8 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter', '$window',
     $scope.reverse = true;
     $scope.furtherFilterName = 'All';
     $scope.furtherFilter = '';
+
+    $scope.selectedDataset = {name: "All", filtername: ""};
 
     $scope.sortAndFilter = function() {
       //console.log($scope.selectedDataset.displayname);

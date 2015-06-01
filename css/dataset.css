@@ -109,6 +109,7 @@ div.center-cropped img {
   left: 50%;
   position: relative;
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
   z-index: 1;
 }
 
@@ -207,6 +208,11 @@ div.center-cropped div.label {
     width: 100px;
     height: 100px;
   }
+  
+  div.center-cropped div.stat {
+    left: 65%;
+  }
+
   #filter-menu.affix .navbar-nav {
     padding-top: 90px;
   }
