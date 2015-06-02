@@ -181,7 +181,14 @@ body {
 
 
 @media (max-width: 768px) {
-  /* change things for larger devices */
+  /* change things for smaller devices */
+
+  .img-container {
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+  }
+
   #heading-text > p.big-text {
     font-size: 10vw;
   }

@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="homepage">
     <meta name="author" content="akhil">
-    <link rel="shortcut icon" href="./images/icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
     <title>Large-Scale Image Memorability</title>
 
@@ -74,6 +74,7 @@
             // $("#imageArea").css('height', 'auto');
             $('#imageArea').attr('src', $('#url').val());
         }
+        $('#box').css('background', '');
         $('#imageDiv').show();
         $("#random").val(new Date().getTime());
         $("#resultArea").hide(); 
@@ -231,7 +232,7 @@
       </div>
     </div>
 
-    <div id="page-heading" class="jumbotron">
+    <div id="page-heading" class="jumbotron" style="margin-left: 0px; margin-right: 0px;">
       <div id="heading-text" class="container">
         <p class="big-text" style="">
           <span class="lamem-text" style="margin-right: 2px;">La</span>rge-scale Image <span class="lamem-text" style="margin-right: 2px;">Mem</span>orability
@@ -243,21 +244,21 @@
       </div>
     </div>
 
-    <div class="container" id="main-content">
+    <div class="container" id=i"main-content">
       
       <div style=" width: 0px; height: 0px; overflow: hidden;" >
 
         <iframe src="" name="resIframe" id="resIframe" onload="iframeLoaded();" ></iframe>
       </div> 
 
-      <div class="row" id="demo" style>
+      <div class="row" id="demo" style="margin-left: 0px; margin-right: 0px;">
 
         <div class="col-md-4 col-sm-6">
           <div id="file-upload">
             <strong>How memorable is your image? Upload to find out!</strong>
             <!-- <form action="selectFile(this)" id="file_form" class="dropzone" style="margin-top: 10px; min-height: 50px;" onchange="selectFile(this);"></form> -->
-            <form id="file_form">
-              <input type="file" name="file_name" id="fileinput" onchange="selectFile(this);">
+            <form id="file_form" style="display: block;">
+              <input type="file" name="file_name" id="fileinput" onchange="selectFile(this);" style="max-width: 80%; display: inline;">
             </form>
             <b>or</b> enter an image url:
             <div class="form-group" style="margin-top: 10px;">
@@ -274,7 +275,7 @@
                 <td><div class="img-container"><img src="imgs/1.jpg" onclick="go(this.src);"></div></td>
                 <td><div class="img-container"><img src="imgs/2.jpg" onclick="handleImage(this.src); go(this.src);"></div></td>
                 <td><div class="img-container"><img src="imgs/3.jpg" onclick="handleImage(this.src); go(this.src);"></div></td>
-                <td><div class="img-container"><img src="imgs/5.jpg" onclick="go(this.src);"></div></td>
+                <td><div class="img-container"><img src="imgs/5.jpg" onclick="go(this.src);"></div></td> 
               </tr>
               <tr>
                 <td><div class="img-container"><img src="imgs/6.jpg" class="portrait" onclick="go(this.src);"></div></td>
@@ -299,7 +300,7 @@
           </div> -->
           <div id="imageDiv" style="margin-top: 7px; float: center; display: none;">
             <div id="box" style="background-size: 100% 100%;">
-              <img id="imageArea" src="imgs/1.jpg" style="max-width: 100%; max-height: 100%;"></img><br/>
+              <img id="imageArea" src="imgs/1.jpg" style="max-width: 100%; max-height: 450px;"></img><br/>
             </div>
             <div style="text-align: center; padding: 15px;">
               <div id="slider" data-wjs-element="box" title="Adjust heatmap" style="margin-left:10px; display: block;"></div>
@@ -316,9 +317,9 @@
 
       <hr/>
 
-      <div class="row">
+      <div class="row" style="margin-left: 0px; margin-right: 0px;">
         <div class="col-md-6" style="">
-            <div class="row" style="padding-top: 0px;">
+            <div class="row" style="padding-top: 0px; margin-left: 0px; margin-right: 0px;">
               <span class="section-header">
                 Download our paper
               </span>
@@ -331,25 +332,25 @@
                 A. Khosla, A. S. Raju, A. Torralba and A. Oliva
               </p>
             </div>
-            <div class="row" style="padding-top: 0px;">
+            <div class="row" style="padding-top: 0px; margin-left: 0px; margin-right: 0px;">
               <a href="#" class="btn btn-reference"><i class="fa fa-file-pdf-o" style="margin: 3px;"></i>PDF</a>
               <a href="#" class="btn btn-reference"><i class="fa fa-book" style="margin: 3px;"></i>Bibtex</a>
             </div>
         </div>
 
         <div class="col-md-6" style="">
-            <div class="row" style="padding-top: 0px;">
+            <div class="row" style="padding-top: 0px; margin-left: 0px; margin-right: 0px;">
               <span class="section-header">
                 Image Memorability API
               </span>
             </div>
             <hr style="padding-top: 0px; padding-bottom: 0px; margin: 0px;">
-            <div class="row">
-              <p>
+            <div class="row" style="margin-left: 0px; margin-right: 0px;">
+              <p style="word-wrap: break-word;">
                 <b>Usage:</b> http://memorability.csail.mit.edu/cgi-bin/image.py?url=IMG_URL<br/>
                 <br/>
                 <b>Example:</b>
-                <a href="http://memorability.csail.mit.edu/cgi-bin/image.py?url=
+                <a style="word-wrap: break-word;" href="http://memorability.csail.mit.edu/cgi-bin/image.py?url=
                 http://memorability.csail.mit.edu/demo/1.jpg">http://memorability.csail.mit.edu/cgi-bin/image.py?url=
                 http://memorability.csail.mit.edu/demo/1.jpg</a> <br/>
                 <br/>

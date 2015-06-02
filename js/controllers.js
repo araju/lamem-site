@@ -79,7 +79,7 @@ imagesApp.controller('ImageListCtrl', ['$scope', '$http', '$filter', '$window',
       var last = $scope.images.length;
       var cur = 0;
       var count = 0;
-      var minNum = ($window.innerHeight / 200) * ($window.innerWidth / 200);
+      var minNum = ($window.innerHeight / 90) * ($window.innerWidth / 90);
       if (cur < $scope.possibleImages.length) {
         while((count < 3 || $scope.images.length < minNum) && cur < $scope.possibleImages.length) {
           if (!contains($scope.images, $scope.possibleImages[cur])) {
