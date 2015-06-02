@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="./js/angular.min.js"></script>
     <script src="./js/controllers.js"></script>
     <!--<script src="./js/dropzone.js"></script>-->
@@ -197,7 +198,7 @@
              slide: function(e,ui){
                      $('#imageArea').css('opacity', 1-ui.value)
              }                
-        })
+        }).draggable();
     });
 
     </script>
